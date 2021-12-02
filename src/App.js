@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useContext } from 'react';
+
+import Layout from './components/layout/Layout';
+import MyFonts from './pages/MyFonts';
+import BuyFonts from './pages/BuyFonts';
+import FontsContext from './store/fonts-context';
+import { URL } from './utils/constants/constants';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const fontsContext = useContext(FontsContext);
+
+  useEffect(() => {
+    if (fontsContext.tabs.length <= 0) {
+      fetch(`${URL}tabs`)
+        .then(response => {
+          return response.json();
+        }).then((tabs) => {
+          fontsContext.addTabs(tabs.filter(tab => tab.content_endpoint));
+        });
+    }
+  }, []);
+  return (<Layout>
+    {fontsContext.selectedTab === 101 ? <MyFonts /> : <BuyFonts />}
+  </Layout>);
 }
 
-export default App;
+export default App

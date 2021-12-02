@@ -1,0 +1,58 @@
+.lCard {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.sCard {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+
+.labels {
+  display: flex;
+  flex-direction: row;
+}
+
+.bullet {
+  width: 20px;
+  font-size: 4rem;
+  color: gray;
+}
+
+.text {
+  padding-left: 20px;
+  padding-top: 25px;
+  width: 400px;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+@media only screen and (max-width: 1300px) {
+  .text {
+    font-size: 30px;
+    width: 300px;
+  }
+}
+
+@media only screen and (max-width: 870px) {
+  .text {
+    font-size: 20px;
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .bullet {
+    width: 10px;
+    font-size: 3rem;
+  }
+
+  .text {
+    padding-top: 10px;
+    font-size: 12px;
+    width: 120px;
+  }
+}
